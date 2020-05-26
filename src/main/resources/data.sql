@@ -1,9 +1,6 @@
-insert into hios (hios_id, hios, hios_name) values (1, '67183', 'Centene-CA');
-insert into hios (hios_id, hios, hios_name) values (2, '67184', 'Centene-AZ');
-insert into hios (hios_id, hios, hios_name) values (3, '67185', 'Centene-AR');
-insert into state (state_id, state_code, state_name) values (1, 'CA', 'California');
-insert into state (state_id, state_code, state_name) values (2, 'AZ', 'Arizona');
-insert into state (state_id, state_code, state_name) values (3, 'FL', 'Florida');
-insert into trading_partner (trading_partner_id, trading_partner, state_id, hios_id) values (1, '79042323', 1, 1);
-insert into trading_partner (trading_partner_id, trading_partner, state_id, hios_id) values (2, '79042324', 2, 2);
-insert into trading_partner (trading_partner_id, trading_partner, state_id, hios_id) values (3, '79042325', 3, 3);
+insert into trading_partner (trading_partner_id, trading_partner_desc, trading_partner, state_code, hios, created_date, last_modified_date)
+                     values (1, 'Nevada Trading Partner', '204761189', 'NV', '45142', sysdate, sysdate);
+insert into transaction_source(transaction_source_id, transaction_source_name, sender_id, receiver_id, market_place_type, trading_partner_id, effective_date, end_date, created_date, last_modified_date)
+                    values (1, 'Nevada - FFM', 'CMSFFM', '204761189', 'FFM', 1, TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), null, sysdate, sysdate);
+insert into transaction_source(transaction_source_id, transaction_source_name, sender_id, receiver_id, market_place_type, trading_partner_id, effective_date, end_date, created_date, last_modified_date)
+                    values (2, 'Nevada - SBE', 'NV0', '204761189', 'SBE', 1, TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), null, sysdate, sysdate);

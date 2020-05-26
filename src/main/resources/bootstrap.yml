@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: iason-trading-partner
+  cloud:
+    discovery:
+      enabled: true
+    config:
+      discovery:
+        service-id: iason-config-server
