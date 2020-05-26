@@ -44,7 +44,7 @@ public class TradingPartnerProducer {
         for (TradingPartner tradingPartner: tradingPartnerList) {
             String tp = mapper.writeValueAsString(tradingPartner);
             kafkaTemplate.send("trading_partners",tp);
-            log.debug("Trading Partner Produced: " + tradingPartner.getTradingPartner());
+            log.debug("Trading Partner Produced: " + tradingPartner.getTradingPartnerDesc());
         }
 
     }

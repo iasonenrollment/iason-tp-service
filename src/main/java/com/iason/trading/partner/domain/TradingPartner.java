@@ -44,32 +44,46 @@ public class TradingPartner {
     private Long tradingPartnerId;
 
     /**
+     * A short description of the trading partner
+     */
+    @Column(name="trading_partner_desc", columnDefinition = "varchar", length = 500,
+            updatable = false, nullable = false, unique = true)
+    private String tradingPartnerDesc;
+
+    /**
      * Unique Trading Partner id that is created by the user
      * This the id that is provided by the user.
      * This has to be unique
      */
-    @Column(name="trading_partner", columnDefinition = "varchar",
+    @Column(columnDefinition = "varchar",
             updatable = false, nullable = false, unique = true)
     private String tradingPartner;
 
     /**
      * The state that is associated with the Trading Partner
      */
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "state_id", nullable = false)
-    private State state;
+    private String stateCode;
 
     /**
      * The HIOS ID that is associated with the Trading Partner
      */
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "hios_id", nullable = false)
-    private HIOS hios;
+    private String hios;
+
+    /**
+     * A trading partner can be associated to many transaction sources
+     * A Transaction Source can be associated with only one trading partner
+     *
+     * The default fetch type for One to Many relationship is LAZY
+     */
+    @OneToMany(mappedBy = "tradingPartner", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    //@JoinColumn(name="trading_partner_sk")
+    private List<TransactionSource> transactionSources = new ArrayList<>();
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(name="created_date", updatable = false)
     private Timestamp createdDate;
+
     @UpdateTimestamp
-    @Column(updatable = false)
+    @Column(name="last_modified_date", updatable = false)
     private Timestamp lastModifiedDate;
 }

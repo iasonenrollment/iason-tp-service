@@ -1,7 +1,7 @@
 package com.iason.trading.partner.web.apis;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.iason.trading.partner.web.TradingPartnerDto;
+import com.iason.trading.partner.web.model.TradingPartnerDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -44,10 +44,9 @@ public interface TradingPartnerAPIs {
                     )
             }
     )
-    @GetMapping(value="/initiative/{initiativeId}/trading-partners",
+    @GetMapping(value="/trading-partners",
                 produces = {"application/json"})
-    ResponseEntity<String> getTradingPartners(
-            @PathVariable("initiativeId") String initiativeId) throws JsonProcessingException;
+    ResponseEntity getTradingPartners();
 
     @Operation(
             summary = "Create Trading Partners",
@@ -65,4 +64,26 @@ public interface TradingPartnerAPIs {
     @PostMapping(value="/trading-partners",
                  consumes = {"application/json"})
     ResponseEntity createTradingPartner(@Valid @RequestBody TradingPartnerDto tradingPartnerDto);
+
+    @Operation(
+            summary = "Test Connection with Trading Partner Service",
+            description = "Method to test for connectivity with Trading Partner Service",
+//            tags = {
+//                    "product"
+//            },
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Successfully Connected with Trading Partner Service",
+                            content = {
+                                    @Content(
+                                            schema = @Schema(implementation = String.class)
+                                    )
+                            }
+                    )
+            }
+    )
+    @GetMapping(value="/hello-trading-partner",
+            consumes = {"application/json"})
+    String helloTradingPartner();
 }
